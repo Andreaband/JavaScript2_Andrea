@@ -35,6 +35,12 @@ function NavBar() {
                 <li className="px-4 py-2 hover:bg-red-100">
                   <Link to="/product/4">Rustic Cup</Link>
                 </li>
+                <li className="px-4 py-2 hover:bg-red-100">
+                  <Link to="/product/5">Napoli Cup</Link>
+                </li>
+                <li className="px-4 py-2 hover:bg-red-100">
+                  <Link to="/product/6">Milano Cup</Link>
+                </li>
               </ul>
             )}
           </li>
