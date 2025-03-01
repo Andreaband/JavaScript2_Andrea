@@ -1,17 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/NavBar";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/free-mode";
-import { FreeMode } from "swiper/modules";
 import BariCup from "../assets/images/Bari_Cup.png";
 import CeramicMug from "../assets/images/tom-crew-oiZAQvxTcYQ-unsplash.jpg";
 import HandmadeCup from "../assets/images/tazza-paula-marrone-grigio_madeindesign_415599_original.jpg";
 import RusticCup from "../assets/images/jocelyn-morales-85u5oGSBJ1s-unsplash.jpg";
 import NapoliCup from "../assets/images/Napolicup.jpg";
 import MilanoCup from "../assets/images/Milanocup.jpg";
-
 
 const products = [
   { id: 1, image: BariCup, name: "Bari Cup", price: "Kr60.00" },
@@ -21,7 +16,6 @@ const products = [
   { id: 5, image: NapoliCup, name: "NapoliCup", price: "Kr70.00" },
   { id: 6, image: MilanoCup, name: "MilanoCup", price: "Kr80.00" },
 ];
-
 
 function Shop() {
   const navigate = useNavigate();
@@ -54,26 +48,24 @@ function Shop() {
 
         {/* Sezione dei prodotti SCORREVOLE IN VERTICALE */}
         <div className="h-[500px] overflow-y-auto scrollbar-thin scrollbar-thumb-red-500">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1">
             {products.map((product) => (
               <div
-              key={product.id}
-              className="p-4 cursor-pointer flex flex-col items-center transform transition-transform duration-300 hover:scale-105"
-              onClick={() => navigate(`/product/${product.id}`)}
-            >
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-96 object-cover rounded-md"
-              />
-              <h2 className="text-xl font-semibold mt-2 text-red-700">{product.name}</h2>
-              <p className="text-lg font-bold text-red-600">{product.price}</p>
-            </div>
-            
+                key={product.id}
+                className="p-4 cursor-pointer flex flex-col items-center transform transition-transform duration-300 hover:scale-105"
+                onClick={() => navigate(`/product/${product.id}`)}
+              >
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-96 object-cover rounded-md"
+                />
+                <h2 className="text-xl font-semibold mt-2 text-red-700">{product.name}</h2>
+                <p className="text-lg font-bold text-red-600">{product.price}</p>
+              </div>
             ))}
           </div>
         </div>
-
       </div>
     </div>
   );
