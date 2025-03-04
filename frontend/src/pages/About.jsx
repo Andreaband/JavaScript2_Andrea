@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "../components/NavBar";
-import Bild3 from "../assets/images/Bild3.jpg";
-import CeramicMug from "../assets/images/tom-crew-oiZAQvxTcYQ-unsplash.jpg";
+// import Bild3 from "backend/images/Bild3.jpg";
+// import CeramicMug from "backend/images/tom-crew-oiZAQvxTcYQ-unsplash.jpg";
 
 function About() {
   return (
@@ -14,19 +14,19 @@ function About() {
         <div className="flex gap-4 mb-12 h-96"> 
           {/* Prima immagine */}
           <div className="w-1/2 h-full overflow-hidden rounded-lg shadow-lg">
-            <img
-              src={Bild3}
-              alt="Immagine 1"
-              className="w-full h-full object-cover" 
+          <img
+              src="http://localhost:5001/images/NapoliCup.jpg"
+              alt="Rustic Cup"
+              className="w-full h-auto rounded-lg"
             />
           </div>
 
           {/* Seconda immagine */}
           <div className="w-1/2 h-full overflow-hidden rounded-lg shadow-lg">
-            <img
-              src={CeramicMug}
-              alt="Immagine 2"
-              className="w-full h-full object-cover" 
+          <img
+              src="http://localhost:5001/images/tom-crew-oiZAQvxTcYQ-unsplash.jpg"
+              alt="Rustic Cup"
+              className="w-full h-auto rounded-lg"
             />
           </div>
         </div>

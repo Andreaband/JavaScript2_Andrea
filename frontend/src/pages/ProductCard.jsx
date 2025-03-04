@@ -10,7 +10,7 @@ function Product() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/products/${id}`)
+    fetch(`http://localhost:5001/api/products/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Errore HTTP: ${response.status}`); 
@@ -23,15 +23,15 @@ function Product() {
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Errore nel caricamento del prodotto:", error);
+        console.error("Error", error);
         setError(error.message); // Imposta il messaggio di errore
         setLoading(false);
       });
   }, [id]);
 
-  if (loading) return <div>Caricamento...</div>;
-  if (error) return <div>Errore: {error}</div>;
-  if (!product) return <div>Prodotto non trovato</div>;
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!product) return <div>Prodoct not found</div>;
 
   return (
     <div>
@@ -39,7 +39,7 @@ function Product() {
       <div className="flex flex-col md:flex-row items-center justify-between bg-[#FAF5F0] min-h-screen w-full px-8 py-16">
         <div className="w-full md:w-1/2 flex justify-center">
           <img
-            src={product.image}
+             src={product.image ? `http://localhost:5001/images/${product.image}` : "https://via.placeholder.com/300"}
             alt={product.name}
             className="w-80 md:w-96 rounded-lg shadow-lg"
           />
