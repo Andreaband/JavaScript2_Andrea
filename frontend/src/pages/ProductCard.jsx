@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Button from "../components/Button";
 
-function Product() {
+function ProductCard() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -13,25 +13,23 @@ function Product() {
     fetch(`http://localhost:5001/api/products/${id}`)
       .then((response) => {
         if (!response.ok) {
-          throw new Error(`Errore HTTP: ${response.status}`); 
+          throw new Error(`Errore HTTP: ${response.status}`);
         }
         return response.json();
       })
       .then((data) => {
-        console.log("Dati ricevuti:", data);
         setProduct(data);
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error", error);
-        setError(error.message); // Imposta il messaggio di errore
+        setError(error.message);
         setLoading(false);
       });
   }, [id]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-  if (!product) return <div>Prodoct not found</div>;
+  if (!product) return <div>Product not found</div>;
 
   return (
     <div>
@@ -39,7 +37,7 @@ function Product() {
       <div className="flex flex-col md:flex-row items-center justify-between bg-[#FAF5F0] min-h-screen w-full px-8 py-16">
         <div className="w-full md:w-1/2 flex justify-center">
           <img
-             src={product.image ? `http://localhost:5001/images/${product.image}` : "https://via.placeholder.com/300"}
+            src={product.image ? `http://localhost:5001/images/${product.image}` : "https://via.placeholder.com/300"}
             alt={product.name}
             className="w-80 md:w-96 rounded-lg shadow-lg"
           />
@@ -54,7 +52,7 @@ function Product() {
           </p>
           <p className="mt-4 text-red-600">{product.description}</p>
           <div className="mt-8">
-            <Button text="ADD TO CART" />
+            <Button text="ADD TO CART" onClick={() => console.log("Aggiunto al carrello:", product)} />
           </div>
         </div>
       </div>
@@ -62,4 +60,4 @@ function Product() {
   );
 }
 
-export default Product;
+export default ProductCard;
