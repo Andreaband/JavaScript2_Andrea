@@ -5,6 +5,7 @@ function NavBar() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isSearchOpen, setSearchOpen] = useState(false);
   const [isLoginOpen, setLoginOpen] = useState(false);
+  const [isCheckoutOpen, setCheckoutOpen] = useState(false); // Stato per la cassa
   const [searchQuery, setSearchQuery] = useState("");
   const [loginData, setLoginData] = useState({ email: "", password: "" });
 
@@ -13,6 +14,7 @@ function NavBar() {
       <h1 className="text-3xl font-bold text-red-700">A.:Otis.</h1>
       <nav>
         <ul className="flex space-x-6 text-red-700 text-base relative">
+          {/* SHOP con dropdown */}
           <li
             className="relative"
             onMouseEnter={() => setDropdownOpen(true)}
@@ -37,10 +39,7 @@ function NavBar() {
           
           {/* SEARCH con dropdown */}
           <li className="relative">
-            <button
-              className="hover:underline"
-              onClick={() => setSearchOpen(!isSearchOpen)}
-            >
+            <button className="hover:underline" onClick={() => setSearchOpen(!isSearchOpen)}>
               SEARCH
             </button>
             {isSearchOpen && (
@@ -55,13 +54,10 @@ function NavBar() {
               </div>
             )}
           </li>
-
+ 
           {/* LOGIN con dropdown */}
           <li className="relative">
-            <button
-              className="hover:underline"
-              onClick={() => setLoginOpen(!isLoginOpen)}
-            >
+            <button className="hover:underline" onClick={() => setLoginOpen(!isLoginOpen)}>
               LOGIN
             </button>
             {isLoginOpen && (
@@ -88,7 +84,24 @@ function NavBar() {
             )}
           </li>
 
-          <li><Link to="/cart" className="hover:underline">CART</Link></li>
+          {/* CART con checkout fittizio */}
+          <li className="relative">
+            <button className="hover:underline" onClick={() => setCheckoutOpen(true)}>
+              CART
+            </button>
+            {isCheckoutOpen && (
+              <div className="absolute right-0 mt-2 w-80 bg-white shadow-lg border border-red-500 rounded-lg p-4">
+                <h3 className="text-red-700 text-lg font-semibold mb-2">Checkout</h3>
+                <p className="text-gray-600 mb-4">Nessun prodotto nel carrello</p>
+                <button
+                  className="w-full bg-red-700 text-white py-2 rounded-md hover:bg-red-800 transition"
+                  onClick={() => setCheckoutOpen(false)}
+                >
+                  Chiudi
+                </button>
+              </div>
+            )}
+          </li>
         </ul>
       </nav>
     </header>
