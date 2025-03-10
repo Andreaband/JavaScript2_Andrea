@@ -11,7 +11,7 @@ function Shop() {
   useEffect(() => {
     fetch("http://localhost:5001/api/products")
       .then((res) => {
-        if (!res.ok) throw new Error("Errore nel recupero dei dati");
+        if (!res.ok) throw new Error("Error retrieving data");
         return res.json();
       })
       .then((data) => {
@@ -19,8 +19,8 @@ function Shop() {
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Errore nel caricamento dei prodotti:", error);
-        setError("Errore nel caricamento dei prodotti");
+        console.error("Error loading products:", error);
+        setError("Error loading products:");
         setLoading(false);
       });
   }, []);
@@ -42,18 +42,18 @@ function Shop() {
           <div className="w-full md:w-1/2 flex flex-col gap-12">
             <div>
               <h2 className="text-2xl font-bold text-red-700 mb-4 text-center">Vara produkt</h2>
-              <p className="text-red-600 font-light">
+              <p className=" text-gray-700 font-light">
                 The terra collection is a tribute to the raw beauty of the natural world, crafted to bring the essence of untouched landscapes into your dining experience.
               </p>
             </div>
             <div>
-              <p className="text-red-600">
+              <p className=" text-gray-700">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non ducimus provident molestiae praesentium obcaecati assumenda doloribus perferendis quos cum suscipit numquam et odit, eius consequuntur soluta ipsa quibusdam! Non, sunt quod! Tenetur nisi repellendus ipsa qui cumque hic laudantium quas sunt quisquam? Dolores, harum molestias cumque fuga esse tempore aliquam expedita voluptate dignissimos iure magni at ratione fugit accusamus enim error quo ipsam optio ullam neque voluptatem. Aliquid quas distinctio quam atque sapiente aspernatur a! Maiores sequi quas mollitia delectus.
               </p>
             </div>
             <div>
-              <p className="text-red-600 font-light">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea autem ipsam quis nisi ratione ipsum quam eum. Dolores necessitatibus vero tempora perspiciatis delectus aperiam velit quod omnis. Asperiores officiis unde sint labore. Provident aliquid, iusto excepturi, quam dicta perspiciatis reprehenderit quisquam eveniet incidunt harum eligendi inventore ipsam id impedit, voluptatem ipsum earum commodi laudantium suscipit maiores! Quod voluptatum culpa maiores?
+              <p className=" text-gray-700 font-light">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi et alias totam id delectus dolore neque dolorem cum tempore omnis odio adipisci possimus commodi natus, corporis illo earum repudiandae! Corporis animi at consequatur consequuntur magnam dolorem necessitatibus, ea cum. Quod, non porro repellat perspiciatis in qui asperiores placeat. Libero repudiandae incidunt quasi! Eveniet, dolorem cumque. Fugiat quisquam error doloribus sed ab a fugit officiis. Accusamus fugiat, placeat perspiciatis corporis iure esse. Quis nihil, quam, maiores id laborum illo eveniet, at provident magnam doloribus culpa aliquam dolorem saepe expedita totam? Sint placeat error quam nihil dolorum exercitationem vitae dolores rem voluptates numquam, dolore alias et soluta? Sapiente consectetur magnam dicta repudiandae et tenetur incidunt totam, blanditiis voluptate officiis nesciunt voluptas. Tempora hic in, doloremque, eligendi placeat quis expedita deserunt officia cumque repudiandae voluptatem autem at? Aliquam, doloremque laboriosam! Commodi iusto dolorem fuga illo. Repellendus, dicta! Alias quisquam quam veniam consectetur neque.
               </p>
             </div>
           </div>
@@ -62,7 +62,7 @@ function Shop() {
         {/* Sezione dei prodotti */}
         <div className="h-[500px] overflow-y-auto scrollbar-thin scrollbar-thumb-red-500">
           {loading ? (
-            <p className="text-center text-red-700 font-semibold">Caricamento prodotti...</p>
+            <p className="text-center text-red-700 font-semibold">Loading products...</p>
           ) : error ? (
             <p className="text-center text-red-700 font-semibold">{error}</p>
           ) : (
