@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function NavBar() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -8,6 +8,14 @@ function NavBar() {
   const [isCheckoutOpen, setCheckoutOpen] = useState(false); // Stato per la cassa
   const [searchQuery, setSearchQuery] = useState("");
   const [loginData, setLoginData] = useState({ email: "", password: "" });
+
+  const navigate = useNavigate();
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    setSearchOpen(false);
+    navigate(`/shop?search=${searchQuery}`);
+  };
 
   return (
     <header className="flex justify-between items-center border-b border-[#B22E1F] py-2 px-6 relative">
@@ -46,17 +54,25 @@ function NavBar() {
             </button>
             {isSearchOpen && (
               <div className="absolute right-0 mt-2 w-64 bg-white shadow-lg border border-red-500 rounded-lg p-2">
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-md"
-                  placeholder="Search products..."
-                />
+                <form onSubmit={handleSearchSubmit}>
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full p-2 border border-gray-300 rounded-md"
+                    placeholder="Search products..."
+                  />
+                  <button
+                    type="submit"
+                    className="mt-2 w-full bg-red-700 text-white py-2 rounded-md hover:bg-red-800 transition"
+                  >
+                    Search
+                  </button>
+                </form>
               </div>
             )}
           </li>
- 
+
           {/* LOGIN con dropdown */}
           <li className="relative">
             <button className="hover:underline" onClick={() => setLoginOpen(!isLoginOpen)}>
