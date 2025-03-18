@@ -6,10 +6,10 @@ function About() {
     <div className="bg-[#FAF5F0] min-h-screen">
       <NavBar />
 
-      {/* Contenitore principale */}
+      {/* Main container */}
       <div className="container mx-auto px-6 py-16">
 
-        {/* Sezione immagini e introduzione */}
+        {/* Images and introduction section */}
         <div className="flex flex-col md:flex-row gap-6 mb-16">
           <img
             src="http://localhost:5001/images/NapoliCup.jpg"
@@ -25,7 +25,7 @@ function About() {
           </div>
         </div>
 
-        {/* Filosofia del Brand */}
+        {/* Brand Philosophy */}
         <div className="relative bg-gradient-to-r from-red-100 to-red-50 p-10 rounded-xl shadow-lg">
           <h3 className="text-2xl font-bold text-red-700 mb-4 uppercase tracking-wide">Our Philosophy</h3>
           <p className="text-gray-800 text-lg leading-relaxed">
@@ -36,7 +36,7 @@ function About() {
           <div className="absolute -top-8 right-8 text-6xl text-red-300 opacity-30 font-serif">“</div>
         </div>
 
-        {/* Materiali Usati */}
+        {/* Materials Used */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition">
             <h4 className="text-xl font-semibold text-red-700 mb-2">Ceramics</h4>
@@ -58,7 +58,7 @@ function About() {
           </div>
         </div>
 
-        {/* Testimonianze Clienti */}
+        {/* Customer Testimonials */}
         <div className="mt-16 bg-white p-10 rounded-lg shadow-xl text-center">
           <h3 className="text-2xl font-bold text-red-700 mb-4">What Our Customers Say</h3>
           <p className="text-gray-800 text-lg italic"> 

@@ -5,6 +5,8 @@ import Shop from "./pages/Shop";
 import ProductCard from "./pages/ProductCard";
 import About from "./pages/About";
 import Footer from "./components/Footer";
+import AdminPage from "./pages/AdminPage";
+import AddProduct from "./pages/AddProduct";
 
 function App() {
   return (
@@ -15,6 +17,10 @@ function App() {
           <Route path="/shop" element={<><Shop /><Footer /></>} />
           <Route path="/product/:id" element={<><ProductCard /><Footer /></>} />
           <Route path="/about" element={<><About /><Footer /></>} />
+
+          {/* Pagine Admin */}
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/admin/add-product" element={<AddProduct />} />
         </Routes>
       </div>
     </Router>
