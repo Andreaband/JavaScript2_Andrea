@@ -18,7 +18,7 @@ function App() {
           <Route path="/product/:id" element={<><ProductCard /><Footer /></>} />
           <Route path="/about" element={<><About /><Footer /></>} />
 
-          {/* Pagine Admin */}
+          {/*Admin */}
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/admin/add-product" element={<AddProduct />} />
         </Routes>

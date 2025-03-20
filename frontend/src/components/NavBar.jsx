@@ -5,16 +5,36 @@ function NavBar() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isSearchOpen, setSearchOpen] = useState(false);
   const [isLoginOpen, setLoginOpen] = useState(false);
-  const [isCheckoutOpen, setCheckoutOpen] = useState(false); // State for checkout
+  const [isCheckoutOpen, setCheckoutOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [loginData, setLoginData] = useState({ email: "", password: "" });
 
   const navigate = useNavigate();
 
+  // Array dei prodotti per la ricerca
+  const products = [
+    { id: 1, name: "Bari Cup" },
+    { id: 2, name: "Ceramic Mug" },
+    { id: 3, name: "Handmade Cup" },
+    { id: 4, name: "Rustic Cup" },
+    { id: 5, name: "Napoli Cup" },
+    { id: 6, name: "Milano Cup" }
+  ];
+
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     setSearchOpen(false);
-    navigate(`/shop?search=${searchQuery}`);
+
+    // Cerca il prodotto nella lista
+    const foundProduct = products.find(product =>
+      product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    if (foundProduct) {
+      navigate(`/product/${foundProduct.id}`); // Vai direttamente alla pagina del prodotto
+    } else {
+      navigate(`/shop?search=${searchQuery}`); // Vai alla pagina dello shop se non trovato
+    }
   };
 
   return (
@@ -22,32 +42,24 @@ function NavBar() {
       <h1 className="text-3xl font-bold text-red-700">A.:Otis.</h1>
       <nav>
         <ul className="flex space-x-6 text-red-700 text-base relative">
-          {/* SHOP with dropdown */}
-          <li
-            className="relative"
-            onMouseEnter={() => setDropdownOpen(true)}
-            onMouseLeave={() => setDropdownOpen(false)}
-          >
+          {/* SHOP */}
+          <li className="relative" onMouseEnter={() => setDropdownOpen(true)} onMouseLeave={() => setDropdownOpen(false)}>
             <Link to="/shop" className="hover:underline">SHOP</Link>
             {isDropdownOpen && (
-              <ul
-                className="absolute left-0 mt-2 w-48 bg-white shadow-lg border border-red-500 rounded-lg"
-                onMouseEnter={() => setDropdownOpen(true)}   
-                onMouseLeave={() => setDropdownOpen(false)} 
-              >
-                <li className="px-4 py-2 hover:bg-red-100"><Link to="/product/1">Bari Cup</Link></li>
-                <li className="px-4 py-2 hover:bg-red-100"><Link to="/product/2">Ceramic Mug</Link></li>
-                <li className="px-4 py-2 hover:bg-red-100"><Link to="/product/3">Handmade Cup</Link></li>
-                <li className="px-4 py-2 hover:bg-red-100"><Link to="/product/4">Rustic Cup</Link></li>
-                <li className="px-4 py-2 hover:bg-red-100"><Link to="/product/5">Napoli Cup</Link></li>
-                <li className="px-4 py-2 hover:bg-red-100"><Link to="/product/6">Milano Cup</Link></li>
+              <ul className="absolute left-0 mt-2 w-48 bg-white shadow-lg border border-red-500 rounded-lg">
+                {products.map(product => (
+                  <li key={product.id} className="px-4 py-2 hover:bg-red-100">
+                    <Link to={`/product/${product.id}`}>{product.name}</Link>
+                  </li>
+                ))}
               </ul>
             )}
           </li>
-
+          
+          {/* ABOUT */}
           <li><Link to="/about" className="hover:underline">ABOUT</Link></li>
           
-          {/* SEARCH with dropdown */}
+          {/* SEARCH */}
           <li className="relative">
             <button className="hover:underline" onClick={() => setSearchOpen(!isSearchOpen)}>
               SEARCH
@@ -73,7 +85,7 @@ function NavBar() {
             )}
           </li>
 
-          {/* LOGIN with dropdown */}
+          {/* LOGIN */}
           <li className="relative">
             <button className="hover:underline" onClick={() => setLoginOpen(!isLoginOpen)}>
               LOGIN
@@ -102,7 +114,7 @@ function NavBar() {
             )}
           </li>
 
-          {/* CART with dummy checkout */}
+          {/* CART */}
           <li className="relative">
             <button className="hover:underline" onClick={() => setCheckoutOpen(true)}>
               CART
