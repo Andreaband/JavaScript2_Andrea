@@ -31,9 +31,9 @@ function NavBar() {
     );
 
     if (foundProduct) {
-      navigate(`/product/${foundProduct.id}`); // Vai direttamente alla pagina del prodotto
+      navigate(`/product/${foundProduct.id}`); 
     } else {
-      navigate(`/shop?search=${searchQuery}`); // Vai alla pagina dello shop se non trovato
+      navigate(`/shop?search=${searchQuery}`); 
     }
   };
 
